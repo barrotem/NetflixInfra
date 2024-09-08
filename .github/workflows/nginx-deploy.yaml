@@ -1,0 +1,32 @@
+name: Netflix Movie Catalog Nginx Web Server Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  EC2_PUBLIC_IP: 13.48.29.32  # This represents my EC2 public ip.
+  SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}  # This secret is defined in my GitHub repository settings.
+
+jobs:
+  Deploy:
+    name: Deploy in EC2
+    runs-on: ubuntu-latest
+    steps:
+      # This makes it so the GitHub provisioned host VM is updated with my repo's files
+      - name: Checkout the app code
+        uses: actions/checkout@v2
+
+      - name: SSH to EC2 instance
+        run: |
+          #Copy EC2_Key to temporary files on the GitHub VM
+          echo "$EC2_PRIVATE_KEY" > temp_key.pem
+          chmod 400 temp_key.pem
+          
+          # Copy the files from the current work dir into the EC2 instance, under `~/NginxInfra`.
+          scp -i temp_key.pem -o StrictHostKeyChecking=accept-new -r * ubuntu@$EC2_PUBLIC_IP:~/NginxInfra
+          
+          # Connect to the EC2 instance and execute the `deploy.sh` script 
+          ssh -i temp_key.pem ubuntu@$EC2_PUBLIC_IP "bash ~/NginxInfra/deploy.sh"
+          
