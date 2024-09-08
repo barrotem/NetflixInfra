@@ -3,8 +3,6 @@
 #2. Destination EC2 instance is already configured as an Nginx web-server, no installations necessary.
 #3. The script is statically typed, addressing Nginx configuration files with their default names (e.g. nginx.conf).
 
- ~/NginxInfra/deploy.sh
-
 #Replace old nginx.conf with the new one
 sudo mv nginx-config/nginx.conf /etc/nginx/nginx.conf
 #Replace old conf.d/default.conf with the new one
