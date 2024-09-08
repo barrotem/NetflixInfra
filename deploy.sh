@@ -11,9 +11,9 @@ then
 fi
 
 #Replace old nginx.conf with the new one.
-sudo mv nginx-config/nginx.conf /etc/nginx/nginx.conf
+sudo mv /home/ubuntu/NginxInfra/nginx-config/nginx.conf /etc/nginx/nginx.conf
 #Replace old conf.d/default.conf with the new one.
-sudo mv nginx-config/default.conf /etc/nginx/conf.d/default.conf
+sudo mv /home/ubuntu/NginxInfra/nginx-config/default.conf /etc/nginx/conf.d/default.conf
 
 #Restart Nginx services, rebuild configuration.
 sudo systemctl restart nginx
