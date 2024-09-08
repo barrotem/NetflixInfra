@@ -10,9 +10,9 @@ then
   rm temp_key.pem
 fi
 
-#Replace old nginx.conf with the new one
+#Replace old nginx.conf with the new one.
 sudo mv nginx-config/nginx.conf /etc/nginx/nginx.conf
-#Replace old conf.d/default.conf with the new one
+#Replace old conf.d/default.conf with the new one.
 sudo mv nginx-config/default.conf /etc/nginx/conf.d/default.conf
 
 #Restart Nginx services, rebuild configuration.
