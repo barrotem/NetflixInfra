@@ -4,10 +4,10 @@
 #3. The script is statically typed, addressing Nginx configuration files with their default names (e.g. nginx.conf).
 
 #Remove erroneous, old key files
-if [[ -f "temp_key.pem" ]]
+if [[ -f "/home/ubuntu/NginxInfra/temp_key.pem" ]]
 then
   echo "temp_key.pem exists. removing"
-  rm temp_key.pem
+  rm /home/ubuntu/NginxInfra/temp_key.pem
 fi
 
 #Replace old nginx.conf with the new one.
