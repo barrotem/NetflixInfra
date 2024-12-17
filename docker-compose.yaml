@@ -1,0 +1,76 @@
+services:
+  # Run Netflix stack related containers:
+  # Run netflix-mc (backend service)
+  netflix-mc:
+    image: barrotem/netflix-mc:2.0.0
+    networks:
+      - private-net-1
+    expose:
+      - 8080
+  # Run netflix-fe (frontend service)
+  netflix-fe:
+    image: barrotem/netflixfe:1.0.2
+    networks:
+      - private-net-1
+      - public-net-1
+    environment:
+      - MOVIE_CATALOG_SERVICE=http://netflix-mc:8080
+    depends_on:
+      - netflix-mc
+    expose:
+      - 3000
+  # Run netflix-nginx (frontend load-balancer)
+  netflix-nginx:
+    image: nginx
+    networks:
+      - public-net-1
+    volumes:
+      # route_to_netflixfe.conf file will be copied into /nginxdata/ first
+      - /nginxdata/route_to_netflixfe.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - netflix-fe
+    ports:
+      - "8080:80"
+  # Run Monitoring stack related containers:
+  # Run availability agent
+  monitoring-agent:
+    image: barrotem/availability_agent:1.0.0
+    networks:
+      - public-net-1
+      - private-net-2
+    environment:
+      - MONITORED_HOST=http://netflix-nginx
+    depends_on:
+      - netflix-nginx
+    expose:
+      - 8081
+  monitoring-prometheus:
+    image: prom/prometheus
+    networks:
+      - private-net-2
+    volumes:
+      # prometheus.yml conf file will be copied into /prometheusdata first
+      - /prometheusdata/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /prometheusdata/data:/prometheus
+    depends_on:
+      - monitoring-agent
+    expose:
+      - 9090
+  monitoring-grafana:
+    image: grafana/grafana
+    networks:
+      - private-net-2
+    volumes:
+      - /grafanadata:/var/lib/grafana
+    depends_on:
+      - monitoring-prometheus
+    ports:
+      - "3000:3000"
+
+# Configure required networks
+networks:
+  # Netflix stack networks
+  private-net-1:
+  public-net-1:
+  # Monitoring stack networks
+  private-net-2:
