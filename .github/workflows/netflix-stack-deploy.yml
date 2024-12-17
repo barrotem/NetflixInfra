@@ -23,17 +23,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update docker-compose.yaml
-        uses: mikefarah/yq@master
-        env:
-          SERVICE_NAME: ${{ github.event.inputs.service_name }}
-          IMAGE_NAME: ${{ github.event.inputs.image }}
-        with:
-          cmd: yq e ".services.${SERVICE_NAME}.image = \"${IMAGE_NAME}\"" -i docker-compose.yaml
+        run: |
+          yq e ".services.\"${{ github.event.inputs.service_name }}\".image = \"${{ github.event.inputs.image }}\"" -i docker-compose.yaml
 
       - name: commit and push
         run: |
-          git config --local user.email "java@katas"
-          git config --local user.name "auto-test"
+          git config --local user.email "github@actions"
+          git config --local user.name "github-actions"
 
           git add docker-compose.yaml && git commit -m "Update ${{ github.event.inputs.service_name }} image to ${{ github.event.inputs.image }}"
           git push origin main --force
