@@ -9,7 +9,7 @@ services:
       - 8080
   # Run netflix-fe (frontend service)
   netflix-fe:
-    image: barrotem/netflixfe:1.0.2
+    image: barrotem/netflixfe:github-wf-4
     networks:
       - private-net-1
       - public-net-1
