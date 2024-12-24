@@ -15,9 +15,6 @@ on:
 permissions:
   contents: write
 
-env:
-  EC2_PUBLIC_IP
-
 jobs:
   UpdateComposeYaml:
     runs-on: ubuntu-latest
