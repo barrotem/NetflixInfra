@@ -2,7 +2,7 @@ services:
   # Run Netflix stack related containers:
   # Run netflix-mc (backend service)
   netflix-mc:
-    image: barrotem/netflix-mc:github-wf-1
+    image: IMAGE_NAME=barrotem/netflix-mc:github-wf-4
     networks:
       - private-net-1
     expose:
