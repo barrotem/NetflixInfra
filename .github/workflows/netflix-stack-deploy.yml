@@ -55,6 +55,6 @@ jobs:
             cd $repo_dir
             
             service_name=${{ github.event.inputs.service_name }}
-            docker compose up -d $service_name
+            docker compose -p netflix-stack up -d $service_name 
             
             echo "Deploy completed."
