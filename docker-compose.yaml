@@ -2,7 +2,7 @@ services:
   # Run Netflix stack related containers:
   # Run netflix-mc (backend service)
   netflix-mc:
-    image: barrotem/netflix-mc:2.0.0
+    image: barrotem/netflix-mc:github-wf-3
     networks:
       - private-net-1
     expose:
@@ -66,7 +66,6 @@ services:
       - monitoring-prometheus
     ports:
       - "3000:3000"
-
 # Configure required networks
 networks:
   # Netflix stack networks
