@@ -50,7 +50,7 @@ jobs:
           script: |
             repo_dir=${{ github.event.inputs.service_name }}_${{ github.run_number }} #${GITHUB_RUN_ID}
             echo ${{ github.event.repository.name }}
-            #git clone https://github.com/${{ github.event.repository.name }} $repo_dir #${GITHUB_REPOSITORY} $repo_dir
+            git clone https://github.com/${{ github.repository }} $repo_dir #${GITHUB_REPOSITORY} $repo_dir
             
             cd $repo_dir
             
