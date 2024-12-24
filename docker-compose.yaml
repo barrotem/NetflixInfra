@@ -66,6 +66,8 @@ services:
       - monitoring-prometheus
     ports:
       - "3000:3000"
+  netflixfe:
+    image: barrotem/netflixfe:github-wf-3
 # Configure required networks
 networks:
   # Netflix stack networks
