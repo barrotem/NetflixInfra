@@ -1,0 +1,37 @@
+# netflix-mc k8s yaml for deployment and service
+# 1. netflix-mc k8s yaml for deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-mc-deployment
+  labels:
+    app: netflix-mc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflix-mc
+  template:
+    metadata:
+        labels:
+          app: netflix-mc
+    spec:
+      containers:
+      - name: netflix-movie-catalog
+        image: barrotem/netflix-mc:github-wf-8
+
+---
+# 2. netflix-mc k8s yaml for service
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-mc-service
+  labels:
+    app: netflix-mc
+spec:
+  selector:
+    app: netflix-mc
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

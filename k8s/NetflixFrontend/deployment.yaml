@@ -1,0 +1,40 @@
+# netflix-fe k8s yaml for deployment and service
+# 1. netflix-fe k8s yaml for deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflixfe-deployment
+  labels:
+    app: netflixfe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflixfe
+  template:
+    metadata:
+        labels:
+          app: netflixfe
+    spec:
+      containers:
+      - name: netflix-frontend
+        image: barrotem/netflixfe:github-wf-3
+        env:
+          - name: MOVIE_CATALOG_SERVICE
+            value: "http://netflix-mc-service:8080"
+
+---
+# 2. netflix-fe k8s yaml for service
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflixfe-service
+  labels:
+    app: netflixfe
+spec:
+  selector:
+    app: netflixfe
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
