@@ -1,4 +1,4 @@
-# netflix-fe k8s yaml for deployment and service
+# netflix-fe k8s yaml for deployment
 # 1. netflix-fe k8s yaml for deployment
 apiVersion: apps/v1
 kind: Deployment
