@@ -18,22 +18,7 @@ spec:
     spec:
       containers:
         - name: netflix-frontend
-          image: barrotem/netflixfe:github-wf-deploy-14
+          image: barrotem/netflixfe:github-wf-deploy-15
           env:
             - name: MOVIE_CATALOG_SERVICE
               value: "http://netflix-mc-service:8080"
----
-# 2. netflix-fe k8s yaml for service
-apiVersion: v1
-kind: Service
-metadata:
-  name: netflixfe-service
-  labels:
-    app: netflixfe
-spec:
-  selector:
-    app: netflixfe
-  ports:
-    - protocol: TCP
-      port: 3000
-      targetPort: 3000
