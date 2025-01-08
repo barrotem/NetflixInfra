@@ -13,9 +13,9 @@ spec:
       app: netflix-mc
   template:
     metadata:
-        labels:
-          app: netflix-mc
+      labels:
+        app: netflix-mc
     spec:
       containers:
-      - name: netflix-movie-catalog
-        image: barrotem/netflix-mc:github-wf-8
+        - name: netflix-movie-catalog
+          image: barrotem/netflix-mc:github-wf-deploy-6
