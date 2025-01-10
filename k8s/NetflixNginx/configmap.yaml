@@ -1,0 +1,14 @@
+# k8s config-map for nginx configuration files
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  default.conf: |
+    server {
+     listen 80;
+     server_name  localhost;
+     location / {
+       proxy_pass http://netflixfe-service:3000;
+      }
+    }
