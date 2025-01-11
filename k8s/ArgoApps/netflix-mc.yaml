@@ -21,4 +21,3 @@ spec:
       prune: false
       selfHeal: false
       allowEmpty: false
-
