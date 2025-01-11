@@ -1,0 +1,23 @@
+# argoCD configuration file responsible for the netflix-fe application deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: netflix-fe
+  namespace: argocd
+  finalizers:
+    # Delete application related resources when issuing application delete
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/barrotem/NetflixInfra
+    targetRevision: HEAD
+    path: k8s/NetflixFrontend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+      allowEmpty: false
