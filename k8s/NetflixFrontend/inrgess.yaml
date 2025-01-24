@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: netflix-frontend-ingress-https
-#spec:
+spec:
 #  tls:
 #    - hosts:
 #      - barrotem-netflix-frontend.devops-int-college.com
