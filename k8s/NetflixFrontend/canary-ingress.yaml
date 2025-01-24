@@ -6,13 +6,13 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-weight: "5"
+spec:
   tls:
     - hosts:
-      - barrotem-netflix-frontend.devops-int-college.com
+        - barrotem-netflix-frontend.devops-int-college.com
       # This assumes tls-secret exists and the SSL
       # certificate contains a CN for foo.bar.com
       secretName: tls-secret
-spec:
   ingressClassName: nginx
   rules:
     - host: barrotem-netflix-frontend.devops-int-college.com
