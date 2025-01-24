@@ -5,13 +5,13 @@ metadata:
 spec:
   tls:
     - hosts:
-      - barrotem-lb-536463901.eu-north-1.elb.amazonaws.com
+      - barrotem-netflix-frontend.devops-int-college.com
       # This assumes tls-secret exists and the SSL
       # certificate contains a CN for foo.bar.com
       secretName: tls-secret
   ingressClassName: nginx
   rules:
-    - host: barrotem-lb-536463901.eu-north-1.elb.amazonaws.com
+    - host: barrotem-netflix-frontend.devops-int-college.com
       http:
         paths:
         - path: /
