@@ -1,5 +1,5 @@
-# netflix-fe k8s yaml for service
-# 2. netflix-fe k8s yaml for service
+# netflixfe-canary k8s yaml for service
+# 2. netflixfe-canary k8s yaml for service
 apiVersion: v1
 kind: Service
 metadata:
