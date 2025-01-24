@@ -1,0 +1,28 @@
+# Ingress object to route traffic to the new canary version of netflix-fe
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: netflix-frontend-ingress-https-canary
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "5"
+spec:
+  tls:
+    - hosts:
+      - barrotem-netflix-frontend.devops-int-college.com
+      # This assumes tls-secret exists and the SSL
+      # certificate contains a CN for foo.bar.com
+      secretName: tls-secret
+  ingressClassName: nginx
+  rules:
+    - host: barrotem-netflix-frontend.devops-int-college.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            # This assumes http-svc exists and routes to healthy endpoints
+            service:
+              name: netflixfe-canary-service
+              port:
+                number: 3000
