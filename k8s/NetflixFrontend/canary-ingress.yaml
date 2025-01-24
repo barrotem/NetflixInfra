@@ -6,8 +6,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
     #nginx.ingress.kubernetes.io/canary-weight: "5"
-    nginx.ingress.kubernetes.io/canary-by-header: "destination"
-    nginx.ingress.kubernetes.io/canary-by-value: "canary"
+    nginx.ingress.kubernetes.io/canary-by-header: "Destination"
+    #nginx.ingress.kubernetes.io/canary-by-value: "canary"
 spec:
   tls:
     - hosts:
