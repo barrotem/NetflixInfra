@@ -6,8 +6,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-weight: "5"
-#    nginx.ingress.kubernetes.io/canary-by-header: "destination"
-#    nginx.ingress.kubernetes.io/canary-by-value: "canary"
   tls:
     - hosts:
       - barrotem-netflix-frontend.devops-int-college.com
