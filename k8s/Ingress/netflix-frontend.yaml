@@ -1,19 +1,24 @@
-# Ingress file to route traffic to netflix-frontend service
-# Once this ingress sees / prefix in http request from host, it forewards the request to netflix-frontend
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: netflix-frontend-ingress
+  name: netflix-frontend-ingress-https
 spec:
+  tls:
+    - hosts:
+      - barrotem-lb-536463901.eu-north-1.elb.amazonaws.com
+      # This assumes tls-secret exists and the SSL
+      # certificate contains a CN for foo.bar.com
+      secretName: tls-secret
   ingressClassName: nginx
   rules:
-  - host: barrotem-lb-536463901.eu-north-1.elb.amazonaws.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: netflixfe-service
-            port:
-              number: 3000
+    - host: barrotem-lb-536463901.eu-north-1.elb.amazonaws.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            # This assumes http-svc exists and routes to healthy endpoints
+            service:
+              name: netflixfe-service
+              port:
+                number: 3000
