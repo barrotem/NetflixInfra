@@ -5,8 +5,9 @@ metadata:
   name: netflix-frontend-ingress-https-canary
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "5"
-spec:
+    #nginx.ingress.kubernetes.io/canary-weight: "5"
+    nginx.inress.kubernetes.io/canary-by-header: "destination"
+    nginx.inress.kubernetes.io/canary-by-value: "canary"
   tls:
     - hosts:
       - barrotem-netflix-frontend.devops-int-college.com
