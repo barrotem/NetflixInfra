@@ -50,7 +50,7 @@ jobs:
           if [[ -f region.$region_env.tfvars ]];
           then
 #               How come terraform creates the workspaces for us?
-#            terraform workspace list
+            terraform workspace list
 #            terraform workspace new $region_env
 #            if [[ $? -eq 1 ]];
 #            then
