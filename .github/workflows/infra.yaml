@@ -47,7 +47,7 @@ jobs:
           
           #Create relevant workspace to check for changes
           region_env=${{ inputs.region }}.${{ inputs.environment }}
-          terraform workspace create $region_env
+          terraform workspace new $region_env
           terraform workspace list
         
           #Apply required file according to settings
