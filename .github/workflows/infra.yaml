@@ -49,14 +49,14 @@ jobs:
           region_env=${{ inputs.region }}.${{ inputs.environment }}
           if [[ -f region.$region_env.tfvars ]];
           then
-#               How come terraform creates the workspaces for us?
+            #How come terraform creates the workspaces for us?
             terraform workspace list
-#            terraform workspace new $region_env
-#            if [[ $? -eq 1 ]];
-#            then
-              #Workspace has existed before
+            #terraform workspace new $region_env
+            #if [[ $? -eq 1 ]];
+            #then
+            #Workspace has existed before
             terraform workspace select $region_env
-#             fi
+            #fi
           else
             echo "Inputs $region_env aren't aligned with directory's contents"
           fi
