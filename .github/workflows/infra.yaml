@@ -40,11 +40,18 @@ jobs:
 
       - name: Initialize terraform repo
         run: |
-          env | grep AWS
+          #CD into the tf directory
           cd tf/
+          #Initialize a .terraform directory
           terraform init
-          ls -l
           
+          #Create relevant workspace to check for changes
+          refion_env = ${{ inputs.environment }}.${{ inputs.environment }}
+          terraform workspace create $region_env
+          terraform workspace list
+        
+          #Apply required file according to settings
+          terraform apply -auto-approve -var-file region.$region_env.tfvars
 
 
 
