@@ -56,7 +56,7 @@ jobs:
 #            then
               #Workspace has existed before
               terraform workspace select $region_env
-            fi
+#             fi
           else
             echo "Inputs $region_env aren't aligned with directory's contents"
           fi
