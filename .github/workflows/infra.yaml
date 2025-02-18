@@ -55,7 +55,7 @@ jobs:
 #            if [[ $? -eq 1 ]];
 #            then
               #Workspace has existed before
-              terraform workspace select $region_env
+            terraform workspace select $region_env
 #             fi
           else
             echo "Inputs $region_env aren't aligned with directory's contents"
