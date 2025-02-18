@@ -47,11 +47,16 @@ jobs:
           
           #Create relevant workspace to check for changes
           region_env=${{ inputs.region }}.${{ inputs.environment }}
-          terraform workspace new $region_env
-          terraform workspace list
-        
+          if [[ -f region.$region_env.tfvars ]]
+          then
+            terraform workspace new $region_env
+            terraform workspace list
+          else
+            echo "Inputs $region_env aren't aligned with directory's contents"
           #Apply required file according to settings
-          terraform apply -auto-approve -var-file region.$region_env.tfvars
+#          terraform apply -auto-approve -var-file region.$region_env.tfvars
+
+
 
 
 
