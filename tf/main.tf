@@ -18,7 +18,8 @@ terraform {
 
 provider "aws" {
   region  = var.region
-  profile = "default" # change in case you want to work with another AWS account profile
+  # Command out profile so github-actions goes to environment variables
+  #   profile = "default" # change in case you want to work with another AWS account profile
 }
 
 
