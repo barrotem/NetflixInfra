@@ -1,0 +1,71 @@
+name: Apply terraform infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment to deploy to"
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+      region:
+        description: "AWS region to deploy to"
+        required: true
+        type: choice
+        options:
+          - eu-north-1
+          - eu-west-3
+
+#Check if needed :
+#permissions:
+#  contents: write
+
+jobs:
+  BuildInfrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      #Copy files
+      - name: Checkout code
+        uses: actions/checkout@v4
+      #Install terraform 1.10.5
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.10.5"
+
+      - name: Initialize terraform repo
+        run: |
+          cd tf/
+          terraform init
+          ls -l
+          
+
+
+
+#  Deploy:
+#    name: Deploy a Netflix stack service
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout the repo code
+#        uses: actions/checkout@v2
+#
+#      - name: Update the Docker Compose project in the EC2
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ vars.EC2_PUBLIC_IP }}
+#          username: ubuntu
+#          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+#          script: |
+#            repo_dir=${{ github.event.inputs.service_name }}_${{ github.run_number }} #${GITHUB_RUN_ID}
+#            echo ${{ github.event.repository.name }}
+#            git clone https://github.com/${{ github.repository }} $repo_dir #${GITHUB_REPOSITORY} $repo_dir
+#
+#            cd $repo_dir
+#
+#            service_name=${{ github.event.inputs.service_name }}
+#            # Project name netflix-stack is assumed, otherwise container substitution won't work !
+#            docker compose -p netflix-stack up -d $service_name
+#
+#            echo "Deploy completed."
