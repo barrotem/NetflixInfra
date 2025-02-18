@@ -40,6 +40,7 @@ jobs:
 
       - name: Initialize terraform repo
         run: |
+          env | grep AWS
           cd tf/
           terraform init
           ls -l
