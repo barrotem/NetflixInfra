@@ -46,7 +46,7 @@ jobs:
           terraform init
           
           #Create relevant workspace to check for changes
-          refion_env = ${{ inputs.environment }}.${{ inputs.environment }}
+          region_env=${{ inputs.environment }}.${{ inputs.environment }}
           terraform workspace create $region_env
           terraform workspace list
         
