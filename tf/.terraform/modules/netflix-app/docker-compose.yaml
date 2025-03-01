@@ -1,0 +1,29 @@
+#Compose file for creating a simple netflix stack, just frontend and backend, without nginx
+#This file will first be used for amazon S3 tutorial
+services:
+  # Run Netflix stack related containers:
+  # Run netflix-mc (backend service)
+  netflix-mc:
+    image: barrotem/netflix-mc:2.0.0
+    networks:
+      - private-net-1
+    expose:
+      - 8080
+  # Run netflix-fe (frontend service)
+  netflix-fe:
+    image: barrotem/netflixfe:1.0.2
+    networks:
+      - private-net-1
+    environment:
+      - MOVIE_CATALOG_SERVICE=http://netflix-mc:8080
+      - AWS_REGION=eu-north-1
+      - AWS_S3_BUCKET=barrotem-netflix-bucket
+    depends_on:
+      - netflix-mc
+    ports:
+      - "3000:3000"
+
+#Configure required networks
+networks:
+  # Netflix stack networks
+  private-net-1:
