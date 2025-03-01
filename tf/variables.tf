@@ -13,8 +13,8 @@ variable "region" {
 #   type        = string
 # }
 
-variable "vpc_azs" {
-  description = "AZs for netflix_app_vpc"
-  type        = list(string)
-}
+# variable "vpc_azs" {
+#   description = "AZs for netflix_app_vpc"
+#   type        = list(string)
+# }
 

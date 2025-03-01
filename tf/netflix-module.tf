@@ -69,6 +69,20 @@ provider "aws" {
 #   }
 # }
 
+data "aws_availability_zones" "available_azs" {
+  state = "available"
+}
+
+data "aws_ami" "ubuntu_ami" {
+  most_recent = true
+  owners      = ["099720109477"]  # Canonical owner ID for Ubuntu AMIs
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+}
+
 module "netflix_app_vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.19.0"
@@ -77,7 +91,8 @@ module "netflix_app_vpc" {
   cidr                    = "10.0.0.0/16"
   map_public_ip_on_launch = true
 
-  azs             = var.vpc_azs
+  # Use data source to configure vpc in all available region azs
+  azs             = data.aws_availability_zones.available_azs.names
   private_subnets = ["10.0.0.0/24", "10.0.1.0/24"]
   public_subnets  = ["10.0.2.0/24", "10.0.3.0/24"]
 
@@ -96,11 +111,12 @@ module "netflix_app" {
   vpc_id            = module.netflix_app_vpc.vpc_id
   vpc_cidr          = "10.0.0.0/16"
   subnet_id         = module.netflix_app_vpc.public_subnets[0]
-  ami_id            = "ami-09a9858973b288bdd"
+  #ami_id            = "ami-09a9858973b288bdd"
+  ami_id = data.aws_ami.ubuntu_ami.id
   instance_type     = "t3.micro"
   key_name          = "barrotem-ec2-tf-key"
   public_key_path   = "/home/barrotem/Desktop/BarRotem/PyCharm/Workspace/Projects/barrotem-ec2-tf-key.pub"
-  bucket_name       = "barrotem-netflix-app-bucket-tf"
+  bucket_name       = "barrotem-netflix-app-bucket-tf-${var.region}"
 }
 
 
