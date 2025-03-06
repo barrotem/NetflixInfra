@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
         - name: netflix-frontend
-          image: barrotem/netflixfe:github-wf-deploy-19
+          image: barrotem/netflixfe:github-wf-deploy-21
           env:
             - name: MOVIE_CATALOG_SERVICE
               value: "http://netflix-mc-service:8080"
-            - name : AWS_SQS_QUEUE_URL
-              value : "https://sqs.eu-north-1.amazonaws.com/352708296901/barrotem-netflix-events"
-            - name : AWS_REGION
-              value : "eu-north-1"
+            - name: AWS_SQS_QUEUE_URL
+              value: "https://sqs.eu-north-1.amazonaws.com/352708296901/barrotem-netflix-events"
+            - name: AWS_REGION
+              value: "eu-north-1"
