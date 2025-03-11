@@ -32,8 +32,11 @@ pipeline {
                    * Setting Shell executable to `/bin/bash` in 'Manage Jenkins > System' is recommended.
                 */
                 sh '''
+
                     cd $SERVICE_NAME'
-                    yq --help
+                    sudo apt install yq -y
+                    yq '.spec.template.spec.containers.[0].image = "$IMAGE_FULL_NAME_PARAM"' deployment.yaml
+                    cat deployment.yaml
                 '''
             }
         }
