@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'general' //dummy commit-4
+    }
 
     parameters {
         string(name: 'SERVICE_NAME', defaultValue: '', description: '')
