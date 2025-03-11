@@ -20,6 +20,7 @@ pipeline {
         }
         stage('update YAML manifest') {
             steps {
+                sh 'echo hello world'
                 /*
 
                 Now your turn! implement the pipeline steps ...
