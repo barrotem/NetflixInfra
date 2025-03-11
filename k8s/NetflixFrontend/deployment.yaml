@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: netflix-frontend
-          image: barrotem/netflixfe:github-wf-deploy-35
+          image: barrotem/netflixfe:github-wf-deploy-36
           env:
             - name: MOVIE_CATALOG_SERVICE
               value: "http://netflix-mc-service:8080"
