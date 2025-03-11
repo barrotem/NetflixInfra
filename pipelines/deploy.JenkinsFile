@@ -36,13 +36,12 @@ pipeline {
                    //yq -i -y ".spec.template.spec.containers[0].image = \"$IMAGE_FULL_NAME_PARAM\"" deployment.yaml
                 */
                 sh '''
-                    echo $IMAGE_FULL_NAME_PARAM
-                    IMAGE_FULL_NAME_PARAM=$IMAGE_FULL_NAME_PARAM
-                    export IMAGE_FULL_NAME_PARAM
                     cd k8s/$SERVICE_NAME
                     sed -i "s|image: .*|image: ${IMAGE_FULL_NAME_PARAM}|" "deployment.yaml"
-
                     cat deployment.yaml
+
+                    git add deployment.yaml
+                    git commit -m "Updated k8s/$SERVICE_NAME yaml with ${IMAGE_FULL_NAME_PARAM}"
                 '''
             }
         }
