@@ -37,7 +37,7 @@ pipeline {
                 sh '''
 
                     cd k8s/$SERVICE_NAME
-                    yq -i -y '.spec.template.spec.containers[0].image = "$IMAGE_FULL_NAME_PARAM"' deployment.yaml
+                    yq -i -y '.spec.template.spec.containers[0].image = \"$IMAGE_FULL_NAME_PARAM\"' deployment.yaml
                     cat deployment.yaml
                 '''
             }
