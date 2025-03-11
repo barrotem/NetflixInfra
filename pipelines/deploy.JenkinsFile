@@ -33,7 +33,7 @@ pipeline {
                 */
                 sh '''
 
-                    cd $SERVICE_NAME
+                    cd k8s/$SERVICE_NAME
                     sudo apt install yq -y
                     yq '.spec.template.spec.containers.[0].image = "$IMAGE_FULL_NAME_PARAM"' deployment.yaml
                     cat deployment.yaml
