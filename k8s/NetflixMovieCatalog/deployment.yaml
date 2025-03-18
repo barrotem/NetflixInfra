@@ -18,4 +18,4 @@ spec:
     spec:
       containers:
         - name: netflix-movie-catalog
-          image: barrotem/netflix-mc:github-wf-deploy-17
+          image: barrotem/netflix-mc:v1.0.6
