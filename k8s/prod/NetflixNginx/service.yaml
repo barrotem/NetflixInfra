@@ -1,0 +1,15 @@
+# netflix-nginx k8s yaml for service
+# 2. netflix-nginx k8s yaml for service
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-nginx-service
+  labels:
+    app: netflix-nginx
+spec:
+  selector:
+    app: netflix-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -1,0 +1,28 @@
+# netflix-nginx k8s yaml for deployment
+# 1. netflix-nginx k8s yaml for deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-nginx-deployment
+  labels:
+    app: netflix-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflix-nginx
+  template:
+    metadata:
+        labels:
+          app: netflix-nginx
+    spec:
+      containers:
+      - name: netflix-nginx-webserver
+        image: nginx:1.26.0
+        volumeMounts:
+          - name: nginx-conf-files
+            mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: nginx-conf-files
+          configMap:
+            name: nginx-conf

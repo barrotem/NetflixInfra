@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: netflix-frontend-ingress-https
+spec:
+  tls:
+    - hosts:
+      - barrotem-netflix-frontend.devops-int-college.com
+      # This assumes tls-secret exists and the SSL
+      # certificate contains a CN for foo.bar.com
+      secretName: tls-secret
+  ingressClassName: nginx
+  rules:
+    - host: barrotem-netflix-frontend.devops-int-college.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            # This assumes http-svc exists and routes to healthy endpoints
+            service:
+              name: netflixfe-service
+              port:
+                number: 3000
