@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: netflix-frontend
-          image: barrotem/netflix-app:v1.0.20
+          image: barrotem/netflix-app:v1.0.21
           env:
             - name: MOVIE_CATALOG_SERVICE
               value: "http://netflix-mc-service:8080"
