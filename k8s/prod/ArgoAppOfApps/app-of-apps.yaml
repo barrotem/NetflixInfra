@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/barrotem/NetflixInfra
     targetRevision: HEAD
-    path: k8s/ArgoApps
+    path: k8s/prod/ArgoApps
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
