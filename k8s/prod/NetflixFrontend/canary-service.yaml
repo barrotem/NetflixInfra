@@ -1,0 +1,15 @@
+# netflixfe-canary k8s yaml for service
+# 2. netflixfe-canary k8s yaml for service
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflixfe-canary-service
+  labels:
+    app: netflixfe-canary
+spec:
+  selector:
+    app: netflixfe-canary
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

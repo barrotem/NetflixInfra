@@ -1,0 +1,26 @@
+# argoCD configuration file responsible for initializing all netflix stack applications
+# This yaml file defines a "father-like" app that deploys all netflix-stack applications from netflix-infra repo
+# This app of apps looks for changes in netflix-infra repo (containing argoCD application definitions) and pushed them to the cluster
+# This ensured Continuous Delivery of all netflix stack applications alongside infrastructure wise changes !
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: netflix-app-of-apps
+  namespace: argocd
+  finalizers:
+    # Delete application related resources when issuing application delete
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/barrotem/NetflixInfra
+    targetRevision: HEAD
+    path: k8s/ArgoApps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+      allowEmpty: false

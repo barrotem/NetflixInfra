@@ -1,18 +1,18 @@
-# argoCD configuration file responsible for the netflix-mc application deployment
+# argoCD configuration file responsible for the netflix-nginx application deployment
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: netflix-mc
+  name: netflix-nginx
   namespace: argocd
   finalizers:
-    # Delete application related resources when issuing application delete
-    - resources-finalizer.argocd.argoproj.io
+   # Delete application related resources when issuing application delete
+   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/barrotem/NetflixInfra
     targetRevision: HEAD
-    path: k8s/NetflixMovieCatalog
+    path: k8s/dev/NetflixNginx
   destination:
     server: https://kubernetes.default.svc
     namespace: default

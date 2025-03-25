@@ -1,0 +1,28 @@
+# netflix-fe k8s yaml for deployment
+# 1. netflix-fe k8s yaml for deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflixfe-deployment
+  labels:
+    app: netflixfe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflixfe
+  template:
+    metadata:
+      labels:
+        app: netflixfe
+    spec:
+      containers:
+        - name: netflix-frontend
+          image: barrotem/netflix-app:v1.0.20
+          env:
+            - name: MOVIE_CATALOG_SERVICE
+              value: "http://netflix-mc-service:8080"
+            - name: AWS_SQS_QUEUE_URL
+              value: "https://sqs.eu-north-1.amazonaws.com/352708296901/barrotem-netflix-events"
+            - name: AWS_REGION
+              value: "eu-north-1"

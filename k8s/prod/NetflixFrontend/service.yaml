@@ -1,0 +1,15 @@
+# netflix-fe k8s yaml for service
+# 2. netflix-fe k8s yaml for service
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflixfe-service
+  labels:
+    app: netflixfe
+spec:
+  selector:
+    app: netflixfe
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

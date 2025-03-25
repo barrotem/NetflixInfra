@@ -1,0 +1,14 @@
+#File is commented out in order to be ignored.
+#Node port is irrelevent when using ingress
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: netflixfe-service-external
+#spec:
+#  type: NodePort
+#  selector:
+#    app: netflixfe
+#  ports:
+#    - port: 3000
+#      targetPort: 3000
+#      nodePort: 30001
