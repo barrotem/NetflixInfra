@@ -26,3 +26,14 @@ spec:
               value: "https://sqs.eu-north-1.amazonaws.com/352708296901/barrotem-netflix-events"
             - name: AWS_REGION
               value: "eu-north-1"
+          # Apply liveness and readiness probes on port 3000
+          livenessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/"
+              port: 3000
+          readinessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/"
+              port: 3000

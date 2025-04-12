@@ -19,3 +19,14 @@ spec:
       containers:
         - name: netflix-movie-catalog
           image: barrotem/netflix-mc:v1.0.6
+          # Apply liveness and readiness probes on port 8080
+          livenessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/"
+              port: 8080
+          readinessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/status"
+              port: 8080
