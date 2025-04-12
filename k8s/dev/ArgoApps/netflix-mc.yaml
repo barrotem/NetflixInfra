@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/barrotem/NetflixInfra
-    targetRevision: HEAD
+    targetRevision: dev
     path: k8s/dev/NetflixMovieCatalog
   destination:
     server: https://kubernetes.default.svc
