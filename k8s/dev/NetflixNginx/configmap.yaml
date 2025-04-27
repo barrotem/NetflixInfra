@@ -9,6 +9,6 @@ data:
      listen 80;
      server_name  localhost;
      location / {
-       proxy_pass http://netflixfe-service:3000;
+       proxy_pass http://netflix-frontend-dev-service:3000;
       }
     }
