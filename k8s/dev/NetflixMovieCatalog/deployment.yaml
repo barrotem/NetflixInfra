@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netflix-mc-deployment
+  name: netflix-mc-dev-deployment
   labels:
     app: netflix-mc
 spec:

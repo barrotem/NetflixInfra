@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netflixfe-canary-deployment
+  name: netflix-frontend-dev-canary-deployment
   labels:
     app: netflixfe-canary
 spec:

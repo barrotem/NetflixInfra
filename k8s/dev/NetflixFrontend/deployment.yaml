@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netflixfe-deployment
+  name: netflix-frontend-dev-deployment
   labels:
     app: netflixfe
 spec:
