@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netflix-nginx-deployment
+  name: netflix-nginx-prod-deployment
   labels:
     app: netflix-nginx
 spec:
@@ -25,4 +25,4 @@ spec:
       volumes:
         - name: nginx-conf-files
           configMap:
-            name: nginx-conf
+            name: nginx-prod-conf
