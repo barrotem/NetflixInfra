@@ -3,7 +3,7 @@
 #kind: Application
 #metadata:
 #  name: netflix-frontend-dev
-#  namespace: dev
+#  namespace: argocd
 #  finalizers:
 #    # Delete application related resources when issuing application delete
 #    - resources-finalizer.argocd.argoproj.io
