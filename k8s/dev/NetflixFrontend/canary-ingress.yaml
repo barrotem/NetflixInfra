@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: netflix-frontend-ingress-https-canary
+  name: netflix-frontend-dev-ingress-https-canary
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-by-header: "Destination"
@@ -24,6 +24,6 @@ spec:
           backend:
             # This assumes http-svc exists and routes to healthy endpoints
             service:
-              name: netflixfe-canary-service
+              name: netflix-frontend-dev-canary-service
               port:
                 number: 3000
