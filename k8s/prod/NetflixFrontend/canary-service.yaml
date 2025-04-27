@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: netflixfe-canary-service
+  name: netflix-frontend-prod-canary-service
   labels:
     app: netflixfe-canary
 spec:

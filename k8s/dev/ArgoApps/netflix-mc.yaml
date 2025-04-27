@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: netflix-mc
+  name: netflix-mc-dev
   namespace: argocd
   finalizers:
     # Delete application related resources when issuing application delete
