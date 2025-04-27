@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netflixfe-deployment
+  name: netflix-frontend-dev-deployment
   labels:
     app: netflixfe
 spec:
@@ -18,10 +18,10 @@ spec:
     spec:
       containers:
         - name: netflix-frontend
-          image: barrotem/netflix-app:v1.0.20
+          image: barrotem/netflix-frontend-dev:v1.0.6
           env:
             - name: MOVIE_CATALOG_SERVICE
-              value: "http://netflix-mc-service:8080"
+              value: "http://netflix-mc-dev-service:8080"
             - name: AWS_SQS_QUEUE_URL
               value: "https://sqs.eu-north-1.amazonaws.com/352708296901/barrotem-netflix-events"
             - name: AWS_REGION

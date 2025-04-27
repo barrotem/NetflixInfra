@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netflixfe-canary-deployment
+  name: netflix-frontend-prod-canary-deployment
   labels:
     app: netflixfe-canary
 spec:
@@ -21,4 +21,4 @@ spec:
           image: barrotem/netflixfe:github-wf-deploy-20
           env:
             - name: MOVIE_CATALOG_SERVICE
-              value: "http://netflix-mc-service:8080"
+              value: "http://netflix-mc-prod-service:8080"
